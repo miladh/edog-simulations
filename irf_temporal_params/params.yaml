@@ -62,12 +62,12 @@ relay:
            unit: "ms"
            start: 5.0
            stop: 30.
-           count: 11
+           count: 31
         delay:
             unit: "ms"
             start: 0.
             stop: 30.
-            count: 11
+            count: 31
             
     Krc_ex:
       w: 1
@@ -82,12 +82,12 @@ relay:
           unit: "ms"
           start: 5.0
           stop: 30.
-          count: 11
+          count: 31
       delay:
           unit: "ms"
           start: 0.
           stop: 30.
-          count: 11
+          count: 31
 
     Krc_in:
        w: 1
@@ -102,9 +102,9 @@ relay:
            unit: "ms"
            start: 5.0
            stop: 30.
-           count: 11
+           count: 31
        delay:
            unit: "ms"
            start: 0.
            stop: 30.
-           count: 11
+           count: 31
