@@ -1,3 +1,5 @@
+name: "wavenumber_tuning"
+
 # Integrator settings
 grid:
     nr: 8

@@ -1,3 +1,5 @@
+name: "irf_temporal_params_mix_fb"
+
 # Integrator settings
 grid:
     nr: 7

@@ -1,3 +1,5 @@
+name: "irf_spatial"
+
 #Integrator settings
 grid:
     nr: 8

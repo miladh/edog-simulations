@@ -1,3 +1,5 @@
+name: "size_tuning"
+
 # Integrator settings
 grid:
     nr: 7

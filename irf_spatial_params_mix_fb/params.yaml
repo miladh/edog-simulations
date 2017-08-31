@@ -1,3 +1,5 @@
+name: "irf_spatial_params_mix_fb"
+
 #Integrator settings
 grid:
     nr: 7

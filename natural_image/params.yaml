@@ -1,3 +1,5 @@
+name: "natural_image"
+
 # Integrator settings
 grid:
     nr: 8

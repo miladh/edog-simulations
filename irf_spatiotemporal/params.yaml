@@ -1,3 +1,5 @@
+name: "irf_spatiotemporal"
+
 # Integrator settings
 grid:
     nr: 7

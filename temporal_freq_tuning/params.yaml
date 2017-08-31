@@ -1,3 +1,5 @@
+name: "temporal_freq_tuning"
+
 # Integrator settings
 grid:
     nr: 7

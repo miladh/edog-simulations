@@ -1,3 +1,5 @@
+name: "natural_movie"
+
 # Integrator settings
 grid:
     nr: 7
