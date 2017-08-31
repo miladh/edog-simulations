@@ -1,13 +1,21 @@
 import os
+import yaml
 from glob import *
 import sys
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 from sumatra.projects import load_project
 
-nb_name = sys.argv[-1]
+filename = sys.argv[-1]
 current_path = os.path.dirname(os.path.realpath(__file__))
 data_path = os.path.abspath(load_project().data_store.root)
+
+with open(filename, 'r') as stream:
+    try:
+        params = yaml.load(stream)
+    except yaml.YAMLError as exc:
+        raise ValueError(exc)
+    nb_name = params["name"]
 
 src_nb_path = os.path.join(current_path, nb_name, nb_name+".ipynb")
 output_nb_path = os.path.join(data_path, nb_name+".ipynb")
