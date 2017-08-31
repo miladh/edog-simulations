@@ -1,0 +1,181 @@
+# Integrator settings
+grid:
+    nr: 7
+    nt: 10
+    dt:
+       unit: "ms"
+       value: 1
+    dr:
+        unit: "deg"
+        value: 0.1
+# Stimulus settings
+stimulus:
+    k_id: 2
+    w:
+       start: 0
+       stop: 25
+       count: 100
+       unit: "Hz"
+
+# Neuron settings
+ganglion:
+    # DOG
+    A: 1
+    a:
+       unit: "deg"
+       value: 0.62
+    B: 0.85
+    b:
+       unit: "deg"
+       value: 1.26
+
+    # Biphasic
+    damping: 0.38
+    phase:
+       unit: "ms"
+       value: 43
+    delay:
+       unit: "ms"
+       value: 0.
+
+relay:
+    Krg:
+        w: 1.0
+        # Gaussian
+        A: 1
+        a:
+           unit: "deg"
+           value: 0.1
+           
+        # exp decay
+        tau:
+           unit: "ms"
+           value: 10.
+        delay:
+           unit: "ms"
+           value: 0
+           
+    Krig:
+        w: 0.6
+        # Gaussian
+        A: -1.0
+        a:
+           unit: "deg"
+           value: 0.3
+           
+        # exp decay
+        tau:
+           unit: "ms"
+           value: 10
+        delay:
+            unit: "ms"
+            value: 5
+            
+    Krc_ex:
+      w:
+          start: 0.
+          stop: 0.6
+          count: 3
+      # Gaussian
+      A: 0.5
+      a: 
+          unit: "deg"
+          value: 0.83
+          
+      # exp decay
+      tau:
+          unit: "ms"
+          start: 5.0
+          stop: 30.
+          count: 2
+      delay:
+          unit: "ms"
+          start: 0.
+          stop: 20.
+          count: 2
+
+    Krc_in:
+       w:
+           start: 0.
+           stop: 0.6
+           count: 3
+       # Gaussian
+       A: -1.5
+       a: 
+           unit: "deg"
+           value: 0.83
+           
+       # exp decay
+       tau:
+           unit: "ms"
+           start: 5.0
+           stop: 30.
+           count: 2
+       delay:
+           unit: "ms"
+           start: 0.
+           stop: 20.
+           count: 2
+    
+    Krc_mix:
+        w: 
+            start: 0.
+            stop: 0.6
+            count: 3
+        
+        Krc_ex:
+            # Gaussian
+            A: 1
+            a: 
+                unit: "deg"
+                value: 0.1
+
+        Krc_in:
+            # Gaussian
+            A: -2
+            a: 
+                unit: "deg"
+                value: 0.9
+               
+         # temporal exp decay
+        delayed_in:
+             tau_ex:
+                 unit: "ms"
+                 value: 5
+             tau_in:
+                 unit: "ms"
+                 value: 30
+             delay_ex:
+                 unit: "ms"
+                 value: 10
+             delay_in:
+                 unit: "ms"
+                 value: 20
+                 
+        synced:
+             tau_ex:
+                 unit: "ms"
+                 value: 10
+             tau_in:
+                 unit: "ms"
+                 value: 10
+             delay_ex:
+                 unit: "ms"
+                 value: 10
+             delay_in:
+                 unit: "ms"
+                 value: 10
+                 
+        delayed_ex:
+             tau_ex:
+                 unit: "ms"
+                 value: 30
+             tau_in:
+                 unit: "ms"
+                 value: 5
+             delay_ex:
+                 unit: "ms"
+                 value: 20
+             delay_in:
+                 unit: "ms"
+                 value: 10

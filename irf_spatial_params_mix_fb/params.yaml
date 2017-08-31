@@ -1,0 +1,64 @@
+#Integrator settings
+grid:
+    nr: 7
+    nt: 1
+    dt:
+        unit: "ms"
+        value: 1.0
+    dr:
+        unit: "deg"
+        value: 0.1
+
+#Neuron settings
+ganglion:
+    # DOG
+    A: 1
+    a:
+       unit: "deg"
+       value: 0.62
+    B: 0.85
+    b:
+       unit: "deg"
+       value: 1.26
+
+relay:
+    Krg:
+        w: 1.0
+        # Gaussian
+        A: 1
+        a:
+           unit: "deg"
+           value: 0.1
+    Krc_ex:
+      w_fix: 0.5
+      w: 
+          start: 0.
+          stop: 0.8
+          count: 30
+      # Gaussian
+      A: 1
+      a_fix: 
+          unit: "deg"
+          value: 0.1
+      a:
+          unit: "deg"
+          start: 0.1
+          stop: 3.
+          count: 30
+
+    Krc_in:
+       w_fix: 1
+       w:
+           start: 0.
+           stop: 2.0
+           count: 30
+       # Gaussian
+       A: -1
+       a_fix: 
+           unit: "deg"
+           value: 0.9
+       a:
+         unit: "deg"
+         start: 0.1
+         stop: 3.
+         count: 30
