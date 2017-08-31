@@ -5,8 +5,7 @@ import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 from sumatra.projects import load_project
 
-nb_name = sys.argv[1].split(sep="/")[0]
-print(sys.argv, nb_name)
+nb_name = sys.argv[-1]
 current_path = os.path.dirname(os.path.realpath(__file__))
 data_path = os.path.abspath(load_project().data_store.root)
 
