@@ -13,7 +13,7 @@ grid:
         
 # Stimulus settings
 stimulus:
-    k_id: 0
+    k_id: 2
     w_id:  0
     patch_diameter:
            unit: "deg"
