@@ -27,7 +27,7 @@ print("output_nb_path:", output_nb_path)
 with open(src_nb_path) as f:
     nb = nbformat.read(f, as_version=4)
 
-ep = ExecutePreprocessor(timeout=-1)
+ep = ExecutePreprocessor(timeout=-1, kernel_name="python")
 ep.preprocess(nb, {"metadata": {"path": nb_name}})
 
 with open(output_nb_path, 'wt') as f:
