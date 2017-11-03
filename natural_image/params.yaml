@@ -2,14 +2,14 @@ name: "natural_image"
 
 # Integrator settings
 grid:
-    nr: 8
+    nr: 9
     nt: 1
     dt:
         unit: "ms"
         value: 1.0
     dr:
         unit: "deg"
-        value: 0.1
+        value: 0.05
         
 # Neuron settings
 ganglion:
@@ -32,14 +32,14 @@ relay:
            unit: "deg"
            value: 0.1
     Krig:
-        w: 0.6
+        w: 0.5
         # Gaussian
         A: -1.0
         a:
            unit: "deg"
            value: 0.3
     Krc_ex:
-      w: 1
+      w: 1.5
       # Gaussian
       A: 0.5
       a: 
@@ -47,25 +47,25 @@ relay:
           value: 0.83
 
     Krc_in:
-       w: 1
+       w: 1.5
        # Gaussian
-       A: -1.5
+       A: -0.5
        a: 
            unit: "deg"
            value: 0.83
            
     Krc_mix:
-        w: 0.6
+        w: 1.5
         Krc_ex:
           # Gaussian
-          A: 1
+          A: 0.3
           a: 
               unit: "deg"
               value: 0.1
 
         Krc_in:
            # Gaussian
-           A: -2
+           A: -0.6
            a: 
                unit: "deg"
                value: 0.9

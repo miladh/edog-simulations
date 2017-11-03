@@ -134,13 +134,13 @@ def create_spatiotemporal_network(nt, nr, dt, dr,                               
                                   A_g=0, a_g=1*pq.deg, B_g=0, b_g=1*pq.deg,       # Wg_r
                                   phase=43*pq.ms, damping=0.38, delay_g=0*pq.ms,  # Wg_t
                                   w_rg=0, A_rg=0, a_rg=1*pq.deg,                  # Krg_r
-                                  tau_rg=1*pq.ms, delay_rg=0*pq.ms,               # Krg_t
+                                  tau_rg=0*pq.ms, delay_rg=0*pq.ms,               # Krg_t
                                   w_rig=0, A_rig=0, a_rig=1*pq.deg,               # Krig_r
-                                  tau_rig=1*pq.ms, delay_rig=0*pq.ms,             # Krig_t
+                                  tau_rig=0*pq.ms, delay_rig=0*pq.ms,             # Krig_t
                                   w_rc_ex=0, A_rc_ex=0, a_rc_ex=1*pq.deg,         # Krc_ex_r
-                                  tau_rc_ex=1*pq.ms, delay_rc_ex=0*pq.ms,         # Krc_ex_t
+                                  tau_rc_ex=0*pq.ms, delay_rc_ex=0*pq.ms,         # Krc_ex_t
                                   w_rc_in=0, A_rc_in=0, a_rc_in=1*pq.deg,         # Krc_in_r
-                                  tau_rc_in=1*pq.ms, delay_rc_in=0*pq.ms):        # Krc_in_t
+                                  tau_rc_in=0*pq.ms, delay_rc_in=0*pq.ms):        # Krc_in_t
     """
     Creates lgn network
 
@@ -166,16 +166,28 @@ def create_spatiotemporal_network(nt, nr, dt, dr,                               
     Wg_t = tpl.create_biphasic_ft(phase=phase, damping=damping, delay=delay_g)
 
     Krg_r = spl.create_gauss_ft(A=A_rg, a=a_rg)
-    Krg_t = tpl.create_exp_decay_ft(tau=tau_rg, delay=delay_rg)
+    if tau_rg == 0*pq.ms:
+        Krg_t = tpl.create_delta_ft(delay=delay_rg)
+    else:
+        Krg_t = tpl.create_exp_decay_ft(tau=tau_rg, delay=delay_rg)
 
     Krig_r = spl.create_gauss_ft(A=A_rig, a=a_rig)
-    Krig_t = tpl.create_exp_decay_ft(tau=tau_rig, delay=delay_rig)
+    if tau_rig == 0*pq.ms:
+        Krig_t = tpl.create_delta_ft(delay=delay_rig)
+    else:
+        Krig_t = tpl.create_exp_decay_ft(tau=tau_rig, delay=delay_rig)
 
     Krc_ex_r = spl.create_gauss_ft(A=A_rc_ex, a=a_rc_ex)
-    Krc_ex_t = tpl.create_exp_decay_ft(tau=tau_rc_ex, delay=delay_rc_ex)
+    if tau_rc_ex == 0*pq.ms:
+        Krc_ex_t = tpl.create_delta_ft(delay=delay_rc_ex)
+    else:
+        Krc_ex_t = tpl.create_exp_decay_ft(tau=tau_rc_ex, delay=delay_rc_ex)
 
     Krc_in_r = spl.create_gauss_ft(A=A_rc_in, a=a_rc_in)
-    Krc_in_t = tpl.create_exp_decay_ft(tau=tau_rc_in, delay=delay_rc_in)
+    if tau_rc_in == 0*pq.ms:
+        Krc_in_t = tpl.create_delta_ft(delay=delay_rc_in)
+    else:
+        Krc_in_t = tpl.create_exp_decay_ft(tau=tau_rc_in, delay=delay_rc_in)
 
     Kcr_r = spl.create_delta_ft()
     Kcr_t = tpl.create_delta_ft()
@@ -188,6 +200,21 @@ def create_spatiotemporal_network(nt, nr, dt, dr,                               
     network.connect(relay, cortical, (Kcr_r, Kcr_t), weight=1)
 
     return network
+
+
+def spatiotemporal_size_tuning_flash(network, patch_diameter,
+                                     delay=0*pq.ms, duration=500*pq.ms):
+    responses = np.zeros([network.integrator.Nt, len(patch_diameter)]) / pq.s
+
+    for i, d in enumerate(patch_diameter):
+        stimulus = pylgn.stimulus.create_flashing_spot(patch_diameter=d,
+                                                       delay=delay, duration=duration)
+        network.set_stimulus(stimulus, compute_fft=True)
+        [relay] = get_neuron("Relay", network)
+        network.compute_response(relay, recompute_ft=True)
+        responses[:, i] = relay.center_response
+
+    return responses
 
 
 def spatiotemporal_size_tuning(network, angular_freq,
@@ -382,7 +409,7 @@ def rf_center_size(tuning, patch_diameter):
         center size
     '''
 
-    center_idx = int(np.where(tuning == tuning.max())[0])
+    center_idx = int(np.where(tuning == tuning.max())[0][0])
     center_size = patch_diameter[center_idx]
 
     return center_size

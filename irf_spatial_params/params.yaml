@@ -2,14 +2,14 @@ name: "irf_spatial_params"
 
 #Integrator settings
 grid:
-    nr: 7
+    nr: 8
     nt: 1
     dt:
        unit: "ms"
        value: 1.0
     dr:
         unit: "deg"
-        value: 0.1
+        value: 0.05
 
 #Neuron settings
 ganglion:
@@ -24,49 +24,38 @@ ganglion:
        value: 1.26
 
 relay:
+    width: &width
+        unit: "deg"
+        start: 0.1
+        stop: 3.
+        count: 20
+        
+    weight: &weight
+        start: 0.
+        stop: 1.5
+        count: 20
+        
     Krg:
         w: 1.0
         # Gaussian
         A: 1
         a:
-           unit: "deg"
-           value: 0.1
-
+            unit: "deg"
+            value: 0.1
     Krig:
-        w: 
-           start: 0.
-           stop: 0.9
-           count: 30
+        w: *weight
         # Gaussian
-        A: -1
-        a:
-           unit: "deg"
-           start: 0.1
-           stop: 3.
-           count: 30
+        A: -0.5
+        a: *width
 
     Krc_ex:
-      w: 
-         start: 0.
-         stop: 0.8
-         count: 30
-      # Gaussian
-      A: 1
-      a:
-         unit: "deg"
-         start: 0.1
-         stop: 3.
-         count: 30
+        w: *weight
+        # Gaussian
+        A: 0.5
+        a: *width
 
     Krc_in:
-       w:
-         start: 0.
-         stop: 2.0
-         count: 30
-       # Gaussian
-       A: -1
-       a:
-         unit: "deg"
-         start: 0.1
-         stop: 3.
-         count: 30
+        w: *weight
+        # Gaussian
+        A: -0.5
+        a: *width

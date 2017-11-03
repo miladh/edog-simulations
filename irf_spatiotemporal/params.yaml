@@ -24,10 +24,10 @@ ganglion:
        value: 1.26
 
     # Biphasic
+    damping: 0.38
     phase:
        unit: "ms"
        value: 43
-    damping: 0.38
     delay:
        unit: "ms"
        value: 0.
@@ -44,7 +44,7 @@ relay:
         # exp decay
         tau:
            unit: "ms"
-           value: 20.
+           value: 5.
         delay:
            unit: "ms"
            value: 0.

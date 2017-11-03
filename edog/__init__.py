@@ -1,2 +1,2 @@
-from edog import tools
-from edog import plot
+from . import tools
+from . import plot

@@ -37,6 +37,11 @@ ganglion:
        value: 1.26
 
 relay:
+    weight: &weight
+        start: 0.
+        stop: 1.5
+        count: 7
+        
     Krg:
         w: 1.0
         # Gaussian
@@ -45,17 +50,16 @@ relay:
            unit: "deg"
            value: 0.1
     Krig:
-        w: 0.6
+        w: 0.5
+        
         # Gaussian
         A: -1.0
         a:
            unit: "deg"
            value: 0.3
     Krc_ex:
-      w: 
-          start: 0.
-          stop: 0.9
-          count: 10
+      w: *weight
+      
       # Gaussian
       A: 0.5
       a: 
@@ -63,32 +67,27 @@ relay:
           value: 0.83
 
     Krc_in:
-       w:
-           start: 0.
-           stop: 0.9
-           count: 10
+       w: *weight
+       
        # Gaussian
-       A: -1.5
+       A: -0.5
        a: 
            unit: "deg"
            value: 0.83
            
     Krc_mix:
-        w: 
-            start: 0.
-            stop: 0.9
-            count: 10
+        w: *weight
         
         Krc_ex:
           # Gaussian
-          A: 1
+          A: 0.3
           a: 
               unit: "deg"
               value: 0.1
 
         Krc_in:
            # Gaussian
-           A: -2
+           A: -0.6
            a: 
                unit: "deg"
                value: 0.9

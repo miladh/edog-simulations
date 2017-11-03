@@ -44,13 +44,13 @@ relay:
         # exp decay
         tau:
            unit: "ms"
-           value: 10.
+           value: 5.
         delay:
            unit: "ms"
            value: 0
            
     Krig:
-        w: 0.6
+        w: 0.5
         # Gaussian
         A: -1.0
         a:
@@ -60,23 +60,23 @@ relay:
         # exp decay
         tau:
            unit: "ms"
-           value: 10
+           value: 5
         delay:
             unit: "ms"
-            value: 5
+            value: 3
           
     Krc_mix:
-        w: 0.6
+        w: 1
         Krc_ex:
             # Gaussian
-            A: 1
+            A: 0.3
             a: 
                 unit: "deg"
                 value: 0.1
 
         Krc_in:
             # Gaussian
-            A: -2
+            A: -0.6
             a: 
                 unit: "deg"
                 value: 0.9
@@ -88,38 +88,38 @@ relay:
                  value: 5
              tau_in:
                  unit: "ms"
-                 value: 30
+                 value: 5
              delay_ex:
                  unit: "ms"
-                 value: 10
+                 value: 5
              delay_in:
                  unit: "ms"
-                 value: 20
+                 value: 30
                  
         synced:
              tau_ex:
                  unit: "ms"
-                 value: 10
-             tau_in:
-                 unit: "ms"
-                 value: 10
-             delay_ex:
-                 unit: "ms"
-                 value: 10
-             delay_in:
-                 unit: "ms"
-                 value: 10
-                 
-        delayed_ex:
-             tau_ex:
-                 unit: "ms"
-                 value: 30
+                 value: 5
              tau_in:
                  unit: "ms"
                  value: 5
              delay_ex:
                  unit: "ms"
-                 value: 20
+                 value: 15
              delay_in:
                  unit: "ms"
-                 value: 10
+                 value: 15
+                 
+        delayed_ex:
+             tau_ex:
+                 unit: "ms"
+                 value: 5
+             tau_in:
+                 unit: "ms"
+                 value: 5
+             delay_ex:
+                 unit: "ms"
+                 value: 30
+             delay_in:
+                 unit: "ms"
+                 value: 5

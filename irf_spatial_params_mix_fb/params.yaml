@@ -2,14 +2,14 @@ name: "irf_spatial_params_mix_fb"
 
 #Integrator settings
 grid:
-    nr: 7
+    nr: 8
     nt: 1
     dt:
         unit: "ms"
         value: 1.0
     dr:
         unit: "deg"
-        value: 0.1
+        value: 0.05
 
 #Neuron settings
 ganglion:
@@ -24,6 +24,17 @@ ganglion:
        value: 1.26
 
 relay:
+    width: &width
+        unit: "deg"
+        start: 0.1
+        stop: 3.
+        count: 20
+        
+    weight: &weight
+        start: 0.
+        stop: 1.5
+        count: 20
+        
     Krg:
         w: 1.0
         # Gaussian
@@ -31,36 +42,25 @@ relay:
         a:
            unit: "deg"
            value: 0.1
+           
     Krc_ex:
-      w_fix: 0.5
-      w: 
-          start: 0.
-          stop: 0.8
-          count: 30
+      w_fix: 0.6
+      w: *weight
+      
       # Gaussian
-      A: 1
+      A: 0.5
       a_fix: 
           unit: "deg"
           value: 0.1
-      a:
-          unit: "deg"
-          start: 0.1
-          stop: 3.
-          count: 30
+      a: *width
 
     Krc_in:
-       w_fix: 1
-       w:
-           start: 0.
-           stop: 2.0
-           count: 30
+       w_fix: 1.2
+       w: *weight
+       
        # Gaussian
-       A: -1
+       A: -0.5
        a_fix: 
            unit: "deg"
            value: 0.9
-       a:
-         unit: "deg"
-         start: 0.1
-         stop: 3.
-         count: 30
+       a: *width

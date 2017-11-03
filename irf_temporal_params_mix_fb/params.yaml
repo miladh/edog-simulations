@@ -32,7 +32,7 @@ ganglion:
        unit: "ms"
        value: 0.
 
-relay:
+relay:     
     Krg:
         w: 1.0
         # Gaussian
@@ -44,52 +44,79 @@ relay:
         # exp decay
         tau:
            unit: "ms"
-           value: 10.
+           value: 5.
         delay:
            unit: "ms"
            value: 0
-            
-    Krc_ex:
-      w: 0.4
-      # Gaussian
-      A: 1
-      a: 
-          unit: "deg"
-          value: 0.1
-          
-      # exp decay
-      tau_small:
-          unit: "ms"
-          value: 5 
-          
-      tau_large:
-          unit: "ms"
-          value: 30 
-          
-      delay_small:
-          unit: "ms"
-          value: 0 
-          
-      delay_large:
-          unit: "ms"
-          value: 30   
-   
-    Krc_in:
-       w: 0.4
-       # Gaussian
-       A: -2
-       a: 
+                 
+    Krig:
+        w: 0.5
+        # Gaussian
+        A: -1.0
+        a:
            unit: "deg"
-           value: 0.9
+           value: 0.3
            
-       # exp decay
-       tau:
+        # exp decay
+        tau:
            unit: "ms"
-           start: 5.0
-           stop: 30.
-           count: 11
-       delay:
-           unit: "ms"
+           value: 5
+        delay:
+            unit: "ms"
+            value: 3
+            
+    Krc_mix:
+        delay: &delay
+            unit: "ms"
+            start: 5.
+            stop: 30.
+            count: 20
+        w:
            start: 0.
-           stop: 30.
-           count: 11
+           stop: 1.0
+           count: 3
+        
+        Krc_ex:
+          w: 1
+          # Gaussian
+          A: 0.3
+          a: 
+              unit: "deg"
+              value: 0.1
+
+          # exp decay
+          tau:
+              unit: "ms"
+              value: 5.
+          delay: *delay
+
+        Krc_in:
+           w: 1
+           # Gaussian
+           A: -0.6
+           a: 
+               unit: "deg"
+               value: 0.9
+
+           # exp decay
+           tau:
+               unit: "ms"
+               value: 5.
+           delay: *delay
+            
+        delayed_in:
+                 delay_ex:
+                     unit: "ms"
+                     value: 5
+                 delay_in:
+                     unit: "ms"
+                     value: 30
+
+        delayed_ex:
+                 delay_ex:
+                     unit: "ms"
+                     value: 30
+                 delay_in:
+                     unit: "ms"
+                     value: 5
+
