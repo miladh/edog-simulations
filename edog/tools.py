@@ -202,21 +202,6 @@ def create_spatiotemporal_network(nt, nr, dt, dr,                               
     return network
 
 
-def spatiotemporal_size_tuning_flash(network, patch_diameter,
-                                     delay=0*pq.ms, duration=500*pq.ms):
-    responses = np.zeros([network.integrator.Nt, len(patch_diameter)]) / pq.s
-
-    for i, d in enumerate(patch_diameter):
-        stimulus = pylgn.stimulus.create_flashing_spot(patch_diameter=d,
-                                                       delay=delay, duration=duration)
-        network.set_stimulus(stimulus, compute_fft=True)
-        [relay] = get_neuron("Relay", network)
-        network.compute_response(relay, recompute_ft=True)
-        responses[:, i] = relay.center_response
-
-    return responses
-
-
 def spatiotemporal_size_tuning(network, angular_freq,
                                wavenumber, patch_diameter):
     """
@@ -433,9 +418,23 @@ def compute_suppression_index(tuning):
 
 
 def compute_autocorrelation(x):
+    '''
+    computes the autocorrelation function:
+    http://stackoverflow.com/q/14297012/190597
+    https://en.wikipedia.org/wiki/Autocorrelation#Estimation
+
+    Parameters
+    ----------
+    x : quantity array
+
+    Returns
+    -------
+    out : array
+        autocorrelation estimation
+    '''
+
     n = len(x)
-    variance = x.var()
-    x = x-x.mean()
-    r = np.correlate(x, x, mode='full')[-n:]
-    result = r/(variance*(np.arange(n, 0, -1)))
-    return result
+    corr = np.correlate(x-x.mean(), x-x.mean(), mode='full')[-n:]
+    autocorr = corr / (x.var() * (np.arange(n, 0, -1)))
+
+    return autocorr

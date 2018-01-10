@@ -22,6 +22,11 @@ plt.rcParams.update(params)
 
 
 class MidpointNormalize(colors.Normalize):
+    """
+    Source:
+    https://matplotlib.org/gallery/userdemo/colormap_normalizations_custom.html
+
+    """
     def __init__(self, vmin=None, vmax=None, midpoint=None, clip=False):
         self.midpoint = midpoint
         colors.Normalize.__init__(self, vmin, vmax, clip)
