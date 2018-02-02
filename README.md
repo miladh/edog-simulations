@@ -22,4 +22,5 @@ These simulations use the [pyLGN simulator](http://pylgn.readthedocs.io/en/lates
 - setuptools
 - pillow
 - quantities 0.12.1
+- pyyaml
 - pylgn
