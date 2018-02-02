@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - defaults
+  - cinpla
+
+dependencies:
+  - pylgn
