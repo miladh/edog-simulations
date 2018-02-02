@@ -1,3 +1,4 @@
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/miladh/edog-simulations/master)
 # edog-simulations
 
 This repository contains all simulations presented in the paper:
