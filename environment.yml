@@ -5,3 +5,5 @@ channels:
 
 dependencies:
   - pylgn
+  - pip:
+	- "git+https://github.com/miladh/edog-simulations.git"
