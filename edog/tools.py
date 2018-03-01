@@ -232,9 +232,9 @@ def spatiotemporal_size_tuning_flash(network, patch_diameter,
     responses = np.zeros([network.integrator.Nt, len(patch_diameter)]) / pq.s
 
     for i, d in enumerate(patch_diameter):
-        stimulus = pylgn.stimulus.create_flashing_spot_ft(patch_diameter=d,
-                                                          delay=delay, duration=duration)
-        network.set_stimulus(stimulus)
+        stimulus = pylgn.stimulus.create_flashing_spot(patch_diameter=d,
+                                                       delay=delay, duration=duration)
+        network.set_stimulus(stimulus, compute_fft=True)
         [relay] = get_neuron("Relay", network)
         network.compute_response(relay, recompute_ft=True)
         responses[:, i] = relay.center_response
