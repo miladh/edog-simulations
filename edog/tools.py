@@ -202,6 +202,46 @@ def create_spatiotemporal_network(nt, nr, dt, dr,                               
     return network
 
 
+def spatiotemporal_size_tuning_flash(network, patch_diameter,
+                                     delay=0*pq.ms, duration=500*pq.ms):
+    """
+    Computes the spatiotemporal size tuning curve for
+    flashing spot stimulus.
+
+    Parameters
+    ----------
+    network : pylgn.Network
+            lgn network
+
+    patch_diameter : quantity array
+        patch sizes
+
+    delay : quantity scalar
+         stimulus onset
+
+    duration : quantity scalar
+            stimulus duration
+
+    Returns
+    -------
+    out : quantity array
+        each column is the temporal response of the center neuron
+        for one specific spot size.
+    """
+
+    responses = np.zeros([network.integrator.Nt, len(patch_diameter)]) / pq.s
+
+    for i, d in enumerate(patch_diameter):
+        stimulus = pylgn.stimulus.create_flashing_spot_ft(patch_diameter=d,
+                                                          delay=delay, duration=duration)
+        network.set_stimulus(stimulus)
+        [relay] = get_neuron("Relay", network)
+        network.compute_response(relay, recompute_ft=True)
+        responses[:, i] = relay.center_response
+
+    return responses
+
+
 def spatiotemporal_size_tuning(network, angular_freq,
                                wavenumber, patch_diameter):
     """
