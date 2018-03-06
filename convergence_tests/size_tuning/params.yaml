@@ -1,0 +1,93 @@
+name: "size_tuning_dr"
+
+# Integrator settings
+grid:
+    nr: 
+        start: 5
+        stop: 9
+        count: 5
+    nt: 1
+    dt:
+        unit: "ms"
+        value: 1.0
+    dr:
+        unit: "deg"
+        start: 0.05
+        stop: 0.2
+        count: 4
+        
+# Stimulus settings
+stimulus:
+    k_id: 0
+    w_id:  0
+    patch_diameter:
+           unit: "deg"
+           start: 0
+           stop: 10
+           count: 50
+
+# Neuron settings
+ganglion:
+    # DOG
+    A: 1
+    a:
+       unit: "deg"
+       value: 0.62
+    B: 0.85
+    b:
+       unit: "deg"
+       value: 1.26
+
+relay:
+    w: &weight
+        start: 0.0
+        stop: 1
+        count: 3
+        
+    Krg:
+        w: 1.0
+        # Gaussian
+        A: 1
+        a:
+           unit: "deg"
+           value: 0.1
+    Krig:
+        w: 0.5
+        # Gaussian
+        A: -1.0
+        a:
+           unit: "deg"
+           value: 0.3
+    Krc_ex:
+      w: *weight
+      
+      # Gaussian
+      A: 0.5
+      a: 
+          unit: "deg"
+          value: 0.83
+
+    Krc_in:
+       w: *weight
+       # Gaussian
+       A: -0.5
+       a: 
+           unit: "deg"
+           value: 0.83
+           
+    Krc_mix:
+        w: *weight
+        
+        Krc_ex:
+          # Gaussian
+          A: 0.3
+          a: 
+              unit: "deg"
+              value: 0.1
+
+        Krc_in:
+           # Gaussian
+           A: -0.6
+           a: 
+               unit: "deg"
+               value: 0.9
