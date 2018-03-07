@@ -1,0 +1,173 @@
+name: "size_tuning_dr"
+
+# Integrator settings
+grid:
+    nr: 7
+    nt: 
+        start: 10
+        stop: 12
+        count: 3
+    dt:
+        unit: "ms"
+        start: 1
+        stop: 2
+        count: 3
+        
+    dr:
+        unit: "deg"
+        value: 0.1
+        
+# Stimulus settings
+stimulus:
+    delay: 
+        unit: "ms"
+        value: 0
+        
+    duration:
+        unit: "ms"
+        value: 500
+        
+    patch_diameter:
+           unit: "deg"
+           start: 0
+           stop: 10
+           count: 50
+
+# Neuron settings
+ganglion:
+    # DOG
+    A: 1
+    a:
+       unit: "deg"
+       value: 0.62
+    B: 0.85
+    b:
+       unit: "deg"
+       value: 1.26
+
+    # Biphasic
+    damping: 0.38
+    phase:
+       unit: "ms"
+       value: 43
+    delay:
+       unit: "ms"
+       value: 0.
+
+relay:
+    weight: &weight
+        start: 0.
+        stop: 1.0
+        count: 3
+ 
+    delay: &delay
+        unit: "ms"
+        start: 5.
+        stop: 30.
+        count: 2
+    
+    Krg:
+        w: 1.0
+        # Gaussian
+        A: 1
+        a:
+           unit: "deg"
+           value: 0.1
+           
+        # exp decay
+        tau:
+           unit: "ms"
+           value: 5.
+        delay:
+           unit: "ms"
+           value: 0
+           
+    Krig:
+        w: 0.5
+        # Gaussian
+        A: -1.0
+        a:
+           unit: "deg"
+           value: 0.3
+           
+        # exp decay
+        tau:
+           unit: "ms"
+           value: 5
+        delay:
+            unit: "ms"
+            value: 3
+            
+    Krc_ex:
+      w: *weight
+      
+      # Gaussian
+      A: 0.5
+      a: 
+          unit: "deg"
+          value: 0.83
+          
+      # exp decay
+      tau:
+          unit: "ms"
+          value: 5.0
+      delay: *delay
+
+    Krc_in:
+       w: *weight
+       
+       # Gaussian
+       A: -0.5
+       a: 
+           unit: "deg"
+           value: 0.83
+           
+       # exp decay
+       tau:
+          unit: "ms"
+          value: 5.0
+       delay: *delay
+    
+    Krc_mix:
+        w: *weight
+        
+        Krc_ex:
+          # Gaussian
+          A: 0.3
+          a: 
+              unit: "deg"
+              value: 0.1
+          
+          # exp decay
+          tau:
+              unit: "ms"
+              value: 5
+
+        Krc_in:
+           # Gaussian
+           A: -0.6
+           a: 
+               unit: "deg"
+               value: 0.9
+               
+           # exp decay
+           tau:
+               unit: "ms"
+               value: 5
+               
+        # temporal exp decay
+        delayed_in:
+             delay_ex:
+                 unit: "ms"
+                 value: 5
+             delay_in:
+                 unit: "ms"
+                 value: 30
+              
+        delayed_ex:
+             delay_ex:
+                 unit: "ms"
+                 value: 30
+             delay_in:
+                 unit: "ms"
+                 value: 5
