@@ -25,7 +25,7 @@ stimulus:
            unit: "deg"
            start: 0
            stop: 10
-           count: 50
+           count: 100
            
 # Neuron settings
 ganglion:
