@@ -17,7 +17,14 @@ with open(filename, 'r') as stream:
         raise ValueError(exc)
     nb_name = params["name"]
 
-src_nb_path = os.path.join(current_path, nb_name, nb_name+".ipynb")
+relative_path = nb_name
+
+if "supplementary_simulations" in nb_name:
+    folder_name, nb_name = nb_name.split("/")
+    src_nb_path = os.path.join(current_path, folder_name, nb_name, nb_name+".ipynb")
+else:
+    src_nb_path = os.path.join(current_path, nb_name, nb_name+".ipynb")
+
 output_nb_path = os.path.join(data_path, nb_name+".ipynb")
 
 print("src_nb_path:", src_nb_path)
@@ -28,7 +35,7 @@ with open(src_nb_path) as f:
     nb = nbformat.read(f, as_version=4)
 
 ep = ExecutePreprocessor(timeout=-1, kernel_name="python")
-ep.preprocess(nb, {"metadata": {"path": nb_name}})
+ep.preprocess(nb, {"metadata": {"path": relative_path}})
 
 with open(output_nb_path, 'wt') as f:
     nbformat.write(nb, f)
