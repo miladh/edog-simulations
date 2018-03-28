@@ -24,7 +24,7 @@ ganglion:
        value: 1.26
 
 relay:
-    w_fb : &weight 1.5 
+    w_fb : &weight 1.8 
     Krg:
         w: 1.0
         # Gaussian
