@@ -9,13 +9,14 @@ params = {
     'font.family': [u'sans-serif'],
     'font.sans-serif':
     [u'sans-serif'],
-    'font.size': 14,
+    'font.size': 10,
     'font.weight': 'semibold',
-    'axes.titlesize': 16,
-    'axes.labelsize': 14,
-    'xtick.labelsize': 14,
-    'ytick.labelsize': 14,
-    'savefig.dpi': 300,
+    'axes.titlesize': 12,
+    'axes.labelsize': 10,
+    'xtick.labelsize': 10,
+    'ytick.labelsize': 10,
+    'savefig.dpi': 600,
+    'figure.dpi': 600,
     'text.latex.preamble': r"\usepackage{amsmath}",
 }
 plt.rcParams.update(params)
