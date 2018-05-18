@@ -4,7 +4,7 @@ channels:
   - cinpla
 
 dependencies:
-  - pylgn
+  - pylgn=0.9
   - pyyaml
   - pip:
     - "git+https://github.com/miladh/edog-simulations.git"
