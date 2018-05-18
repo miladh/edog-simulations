@@ -10,7 +10,7 @@ These simulations use the [pyLGN simulator](http://pylgn.readthedocs.io/en/lates
 
 ## Installation
 
-- Install [pyLGN](http://pylgn.readthedocs.io/en/latest/installation.html#installation).
+- Install [pyLGN](http://pylgn.readthedocs.io/en/latest/installation.html#installation) (v0.9): `conda install -c defaults -c conda-forge -c cinpla pylgn=0.9`
 - Clone or download this repo.
 - In terminal run `python setup.py`
 
