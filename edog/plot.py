@@ -15,8 +15,8 @@ params = {
     'axes.labelsize': 10,
     'xtick.labelsize': 10,
     'ytick.labelsize': 10,
-    'savefig.dpi': 600,
-    'figure.dpi': 600,
+    'savefig.dpi': 1000,
+    'figure.dpi': 1000,
     'text.latex.preamble': r"\usepackage{amsmath}",
 }
 plt.rcParams.update(params)
