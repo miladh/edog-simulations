@@ -3,7 +3,8 @@
 
 This repository contains all simulations presented in the paper:
 
-"Firing-Rate Based Network Modeling of the dLGN Circuit: Effects of Cortical Feedback on Spatiotemporal Response Properties of Relay Cells". https://doi.org/10.1101/246140
+"Firing-Rate Based Network Modeling of the dLGN Circuit: Effects of Cortical Feedback on Spatiotemporal Response Properties of Relay Cells". https://doi.org/10.1371/journal.pcbi.1006156
+
 
 These simulations use the [pyLGN simulator](http://pylgn.readthedocs.io/en/latest/) and the calculations are done in Jupyter notebooks.
 
